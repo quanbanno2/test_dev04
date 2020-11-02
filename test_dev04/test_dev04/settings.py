@@ -49,6 +49,9 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'test_dev04.urls'
 
+# 配置cookies 过期时间
+SESSION_COOKIE_AGE = 3600
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -112,3 +115,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# 配置静态资源文件夹路径
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static")
+]

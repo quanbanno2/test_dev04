@@ -24,4 +24,5 @@ urlpatterns = [
     path('manage/', views.manage),
     path('logout/', views.logout),
 
+
 ]
