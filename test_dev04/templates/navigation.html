@@ -1,0 +1,365 @@
+{% extends "base.html" %}
+{#以下为导航栏模块嵌入到base.html中#}
+{% block base %}
+
+    <!-- navigation.html 功能页 -->
+    <!-- Begin page -->
+    <div class="wrapper">
+        <!-- ========== Left Sidebar Start ========== -->
+        <div class="left-side-menu">
+
+            <!-- LOGO -->
+            <a href="/manage/" class="logo text-center logo-light">
+                    <span class="logo-lg">
+                        {% load static %}
+                        <img src="{% static "manage/logo.png" %}" alt="" height="35">
+                    </span>
+
+                <span class="logo-sm">
+                        <img src="assets/images/logo_sm.png" alt="" height="16">
+                    </span>
+            </a>
+
+            <!-- LOGO -->
+            <a href="index.html" class="logo text-center logo-dark">
+                    <span class="logo-lg">
+                        <img src="assets/images/logo-dark.png" alt="" height="16">
+                    </span>
+                <span class="logo-sm">
+                        <img src="assets/images/logo_sm_dark.png" alt="" height="16">
+                    </span>
+            </a>
+
+            <div class="h-100" id="left-side-menu-container" data-simplebar>
+
+                <!--- Sidemenu -->
+                <ul class="metismenu side-nav">
+
+                    <li class="side-nav-title side-nav-item"> 测试接口</li>
+
+                    <li class="side-nav-item">
+                        <a href="javascript: void(0);" class="side-nav-link">
+                            <svg t="1605492812143" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                                 xmlns="http://www.w3.org/2000/svg" p-id="1201" width="16" height="16">
+                                <path d="M139.636364 0h744.727272a139.636364 139.636364 0 0 1 139.636364 139.636364v744.727272a139.636364 139.636364 0 0 1-139.636364 139.636364H139.636364a139.636364 139.636364 0 0 1-139.636364-139.636364V139.636364a139.636364 139.636364 0 0 1 139.636364-139.636364z m496.733091 789.426424a12.132848 12.132848 0 0 0 12.815515-12.815515V582.438788a97.326545 97.326545 0 0 0-91.229091-99.793455h-96.19394a97.093818 97.093818 0 0 0-91.042909 99.793455v194.172121a12.132848 12.132848 0 0 0 12.815515 12.815515h252.83491z m-320.698182 0a11.915636 11.915636 0 0 0 12.567272-12.815515V574.339879a10.115879 10.115879 0 0 0-2.466909-10.333091 10.348606 10.348606 0 0 0-8.998788-3.816727h-39.098181a76.644848 76.644848 0 0 0-75.962182 75.729454v140.25697a12.148364 12.148364 0 0 0 12.598303 12.8h101.360485v0.465454z m489.720242 0a12.132848 12.132848 0 0 0 12.8-12.815515v-140.691394a76.412121 76.412121 0 0 0-75.962182-76.86206h-39.098181c-2.699636 0-7.64897 1.132606-8.998788 3.832242a25.801697 25.801697 0 0 0-2.466909 10.333091v202.27103a11.915636 11.915636 0 0 0 12.582787 12.815515l101.143273 1.117091zM730.763636 540.175515a89.894788 89.894788 0 1 0-88.544969-89.894788 88.793212 88.793212 0 0 0 88.560485 89.894788z m-439.140848 0a88.54497 88.54497 0 0 0 88.54497-89.894788 88.560485 88.560485 0 1 0-177.105455 0 88.560485 88.560485 0 0 0 88.560485 89.894788z m218.220606-78.196363a114.191515 114.191515 0 0 0 113.943273-115.308607 113.943273 113.943273 0 1 0-227.886546 0 114.393212 114.393212 0 0 0 113.943273 115.293091z"
+                                      fill="#ffffff" p-id="1202"></path>
+                            </svg>
+                            <span> 项目管理 </span>
+                        </a>
+                    </li>
+
+
+                    <li class="side-nav-item">
+                        <a href="apps-calendar.html" class="side-nav-link">
+                            <svg t="1605492906496" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                                 xmlns="http://www.w3.org/2000/svg" p-id="5671" width="16" height="16">
+                                <path d="M160 448a32 32 0 0 1-32-32V160a32 32 0 0 1 32-32h256a32 32 0 0 1 32 32v256a32 32 0 0 1-32 32z m32-64h192V192H192z m-32 512a32 32 0 0 1-32-32V608a32 32 0 0 1 32-32h256a32 32 0 0 1 32 32v256a32 32 0 0 1-32 32z m32-64h192V640H192z m658.88-560L720 141.12 589.12 272 720 402.88z m-153.6 198.72l-176-176a32 32 0 0 1 0-45.44l176-176a32 32 0 0 1 45.44 0l176 176a32 32 0 0 1 0 45.44l-176 176a32 32 0 0 1-45.44 0zM608 896a32 32 0 0 1-32-32V608a32 32 0 0 1 32-32h256a32 32 0 0 1 32 32v256a32 32 0 0 1-32 32z m32-64h192V640H640z"
+                                      p-id="5672" fill="#ffffff"></path>
+                            </svg>
+                            <span> 模块管理 </span>
+                        </a>
+                    </li>
+
+                    <li class="side-nav-item">
+                        <a href="apps-chat.html" class="side-nav-link">
+                            <svg t="1605492870015" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                                 xmlns="http://www.w3.org/2000/svg" p-id="4740" width="16" height="16">
+                                <path d="M256 85.333333h512c25.6 0 42.666667-17.066667 42.666667-42.666666S793.6 0 768 0h-512c-25.6 0-42.666667 17.066667-42.666667 42.666667s17.066667 42.666667 42.666667 42.666666zM896 341.333333H128c-51.2 0-85.333333 34.133333-85.333333 85.333334v512c0 51.2 34.133333 85.333333 85.333333 85.333333h768c51.2 0 85.333333-34.133333 85.333333-85.333333V426.666667c0-51.2-34.133333-85.333333-85.333333-85.333334z m0 597.333334H128V426.666667h768v512zM170.666667 256h682.666666c25.6 0 42.666667-17.066667 42.666667-42.666667S878.933333 170.666667 853.333333 170.666667h-682.666666c-25.6 0-42.666667 17.066667-42.666667 42.666666s17.066667 42.666667 42.666667 42.666667z"
+                                      p-id="4741" fill="#ffffff"></path>
+                            </svg>
+                            <span> 用例管理 </span>
+                        </a>
+                    </li>
+
+                    <li class="side-nav-item">
+                        <a href="javascript: void(0);" class="side-nav-link">
+                            <svg t="1605492927066" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                                 xmlns="http://www.w3.org/2000/svg" p-id="6588" width="16" height="16">
+                                <path d="M831.825 63.94H191.94c-70.692 0-128 57.308-128 128v639.885c0 70.692 57.308 128 128 128h639.885c70.692 0 128-57.308 128-128V191.94c0-70.692-57.308-128-128-128zM895.885 832a63.835 63.835 0 0 1-63.973 63.886H192.088c-17.112 0-33.27-6.575-45.372-18.676s-18.836-28.098-18.836-45.21V192a64.236 64.236 0 0 1 64.208-64.12h639.824A64.038 64.038 0 0 1 895.885 192V832z"
+                                      p-id="6589" fill="#ffffff"></path>
+                                <path d="M791.998 351.852H536a31.97 31.97 0 0 0 0 63.94h256a31.97 31.97 0 0 0 0-63.94z m0 256.121H536a31.97 31.97 0 0 0 0 63.94h256a31.97 31.97 0 0 0 0-63.94z m-447.996-79.975c-61.856 0-111.986 50.144-111.986 111.985S282.16 751.97 344.002 751.97s111.985-50.144 111.985-111.986-50.13-111.985-111.985-111.985z m33.982 145.982a48.045 48.045 0 1 1 14.088-33.982 47.746 47.746 0 0 1-14.088 33.986z m39.412-376.586L311.999 402.787l-41.391-41.395a31.97 31.97 0 1 0-45.213 45.213l63.997 64.002a31.97 31.97 0 0 0 45.214 0l128-128a31.97 31.97 0 0 0-45.21-45.213z"
+                                      p-id="6590" fill="#ffffff"></path>
+                            </svg>
+                            <span> 任务管理 </span>
+                        </a>
+                    </li>
+
+                    <li class="side-nav-title side-nav-item"> 测试工具</li>
+
+                    <li class="side-nav-item">
+                        <a href="javascript: void(0);" class="side-nav-link">
+                            <svg t="1605493805253" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                                 xmlns="http://www.w3.org/2000/svg" p-id="9148" width="16" height="16">
+                                <path d="M101.35 76.46H76.46C69.58 76.46 64 82.04 64 88.92v572.41c0 6.89 5.57 12.46 12.46 12.46h24.89c6.87 0.02 12.44-5.54 12.46-12.4V88.92c0-6.89-5.6-12.46-12.46-12.46zM947.54 76.46h-24.89c-6.88 0-12.46 5.58-12.46 12.46v572.41c0 6.89 5.54 12.46 12.46 12.46h24.89c6.88 0 12.46-5.58 12.46-12.46V88.92c0-6.89-5.6-12.46-12.46-12.46zM140.7 76.46v570.85c0 47.26 29.43 94.97 71.76 120.2l301.58 180.03 296.85-177.18c44.85-26.8 76.47-75.79 76.47-123.06V76.46H140.7z m551.84 534.57h-64.18v-237.7l-82.72 237.7h-69.41l-78.44-237.7v237.7h-64.18v-317.1h98.41l78.92 247.69 83.2-247.69h98.41v317.1z"
+                                      p-id="9149" fill="#ffffff"></path>
+                            </svg>
+                            <span> mock </span>
+                        </a>
+                    </li>
+
+                </ul>
+
+                <!-- End Sidebar -->
+
+                <div class="clearfix"></div>
+
+            </div>
+            <!-- Sidebar -left -->
+
+        </div>
+        <!-- Left Sidebar End -->
+
+        <!-- ============================================================== -->
+        <!-- Start Page Content here -->
+        <!-- ============================================================== -->
+
+        <div class="content-page">
+            <div class="content">
+                <!-- Topbar Start -->
+                <div class="navbar-custom">
+                    <ul class="list-unstyled topbar-right-menu float-right mb-0">
+                        <li class="dropdown notification-list d-lg-none">
+                            <a class="nav-link dropdown-toggle arrow-none" data-toggle="dropdown" href="#" role="button"
+                               aria-haspopup="false" aria-expanded="false">
+                                <i class="dripicons-search noti-icon"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-animated dropdown-lg p-0">
+                                <form class="p-3">
+                                    <input type="text" class="form-control" placeholder="Search ..."
+                                           aria-label="Recipient's username">
+                                </form>
+                            </div>
+                        </li>
+
+
+                        <li class="dropdown notification-list">
+                            <a class="nav-link dropdown-toggle nav-user arrow-none mr-0" data-toggle="dropdown" href="#"
+                               role="button" aria-haspopup="false"
+                               aria-expanded="false">
+                                    <span>
+                                        <span class="account-user-name">welcome, {{ accountName }}</span>
+                                    </span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated topbar-dropdown-menu profile-dropdown">
+
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                    <img src="{% static "manage/settings.png" %}" alt="" height="16">
+                                    <span>设置</span>
+                                </a>
+
+                                <!-- item-->
+                                <a href="/logout/" class="dropdown-item notify-item">
+                                    <img src="{% static "manage/logout.png" %}" alt="" height="16">
+                                    <span>登出</span>
+                                </a>
+
+                            </div>
+                        </li>
+
+                    </ul>
+                    <button class="button-menu-mobile open-left disable-btn">
+                        <i class="mdi mdi-menu"></i>
+                    </button>
+                    <div class="app-search dropdown d-none d-lg-block">
+                        <form>
+                            <div class="input-group">
+                                <input type="text" class="form-control dropdown-toggle" placeholder="Search..."
+                                       id="top-search">
+
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary" type="submit">Search</button>
+                                </div>
+                            </div>
+
+                        </form>
+
+                        <div class="dropdown-menu dropdown-menu-animated dropdown-lg" id="search-dropdown">
+                            <!-- item-->
+                            <div class="dropdown-header noti-title">
+                                <h5 class="text-overflow mb-2">Found <span class="text-danger">17</span> results</h5>
+                            </div>
+
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                <i class="uil-notes font-16 mr-1"></i>
+                                <span>Analytics Report</span>
+                            </a>
+
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                <i class="uil-life-ring font-16 mr-1"></i>
+                                <span>How can I help you?</span>
+                            </a>
+
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                <i class="uil-cog font-16 mr-1"></i>
+                                <span>User profile settings</span>
+                            </a>
+
+                            <!-- item-->
+                            <div class="dropdown-header noti-title">
+                                <h6 class="text-overflow mb-2 text-uppercase">Users</h6>
+                            </div>
+
+                            <div class="notification-list">
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                    <div class="media">
+                                        <img class="d-flex mr-2 rounded-circle" src="assets/images/users/avatar-2.jpg"
+                                             alt="Generic placeholder image" height="32">
+                                        <div class="media-body">
+                                            <h5 class="m-0 font-14">Erwin Brown</h5>
+                                            <span class="font-12 mb-0">UI Designer</span>
+                                        </div>
+                                    </div>
+                                </a>
+
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                    <div class="media">
+                                        <img class="d-flex mr-2 rounded-circle" src="assets/images/users/avatar-5.jpg"
+                                             alt="Generic placeholder image" height="32">
+                                        <div class="media-body">
+                                            <h5 class="m-0 font-14">Jacob Deo</h5>
+                                            <span class="font-12 mb-0">Developer</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end Topbar -->
+
+                <!-- Start Content-->
+                {% block navigation %}
+                    <!-- container -->
+                {% endblock %}
+            </div>
+            <!-- content -->
+
+            <!-- Footer Start -->
+            <footer class="footer">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <script>document.write(new Date().getFullYear())</script>
+                            © Hyper - Coderthemes.com
+                        </div>
+                        <div class="col-md-6">
+                            <div class="text-md-right footer-links d-none d-md-block">
+                                <a href="javascript: void(0);">About</a>
+                                <a href="javascript: void(0);">Support</a>
+                                <a href="javascript: void(0);">Contact Us</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+            <!-- end Footer -->
+
+        </div>
+
+        <!-- ============================================================== -->
+        <!-- End Page content -->
+        <!-- ============================================================== -->
+
+
+    </div>
+    <!-- END wrapper -->
+
+    <!-- Right Sidebar -->
+    <div class="right-bar">
+
+        <div class="rightbar-title">
+            <a href="javascript:void(0);" class="right-bar-toggle float-right">
+                <i class="dripicons-cross noti-icon"></i>
+            </a>
+            <h5 class="m-0">Settings</h5>
+        </div>
+
+        <div class="rightbar-content h-100" data-simplebar>
+
+            <div class="p-3">
+                <div class="alert alert-warning" role="alert">
+                    <strong>Customize </strong> the overall color scheme, sidebar menu, etc.
+                </div>
+
+                <!-- Settings -->
+                <h5 class="mt-3">Color Scheme</h5>
+                <hr class="mt-1"/>
+
+                <div class="custom-control custom-switch mb-1">
+                    <input type="radio" class="custom-control-input" name="color-scheme-mode" value="light"
+                           id="light-mode-check" checked/>
+                    <label class="custom-control-label" for="light-mode-check">Light Mode</label>
+                </div>
+
+                <div class="custom-control custom-switch mb-1">
+                    <input type="radio" class="custom-control-input" name="color-scheme-mode" value="dark"
+                           id="dark-mode-check"/>
+                    <label class="custom-control-label" for="dark-mode-check">Dark Mode</label>
+                </div>
+
+                <!-- Width -->
+                <h5 class="mt-4">Width</h5>
+                <hr class="mt-1"/>
+                <div class="custom-control custom-switch mb-1">
+                    <input type="radio" class="custom-control-input" name="width" value="fluid" id="fluid-check"
+                           checked/>
+                    <label class="custom-control-label" for="fluid-check">Fluid</label>
+                </div>
+                <div class="custom-control custom-switch mb-1">
+                    <input type="radio" class="custom-control-input" name="width" value="boxed" id="boxed-check"/>
+                    <label class="custom-control-label" for="boxed-check">Boxed</label>
+                </div>
+
+                <!-- Left Sidebar-->
+                <h5 class="mt-4">Left Sidebar</h5>
+                <hr class="mt-1"/>
+                <div class="custom-control custom-switch mb-1">
+                    <input type="radio" class="custom-control-input" name="theme" value="default" id="default-check"
+                           checked/>
+                    <label class="custom-control-label" for="default-check">Default</label>
+                </div>
+
+                <div class="custom-control custom-switch mb-1">
+                    <input type="radio" class="custom-control-input" name="theme" value="light" id="light-check"/>
+                    <label class="custom-control-label" for="light-check">Light</label>
+                </div>
+
+                <div class="custom-control custom-switch mb-3">
+                    <input type="radio" class="custom-control-input" name="theme" value="dark" id="dark-check"/>
+                    <label class="custom-control-label" for="dark-check">Dark</label>
+                </div>
+
+                <div class="custom-control custom-switch mb-1">
+                    <input type="radio" class="custom-control-input" name="compact" value="fixed" id="fixed-check"
+                           checked/>
+                    <label class="custom-control-label" for="fixed-check">Fixed</label>
+                </div>
+
+                <div class="custom-control custom-switch mb-1">
+                    <input type="radio" class="custom-control-input" name="compact" value="condensed"
+                           id="condensed-check"/>
+                    <label class="custom-control-label" for="condensed-check">Condensed</label>
+                </div>
+
+                <div class="custom-control custom-switch mb-1">
+                    <input type="radio" class="custom-control-input" name="compact" value="scrollable"
+                           id="scrollable-check"/>
+                    <label class="custom-control-label" for="scrollable-check">Scrollable</label>
+                </div>
+
+                <button class="btn btn-primary btn-block mt-4" id="resetBtn">Reset to Default</button>
+
+                <a href="https://themes.getbootstrap.com/product/hyper-responsive-admin-dashboard-template/"
+                   class="btn btn-danger btn-block mt-3" target="_blank"><i class="mdi mdi-basket mr-1"></i> Purchase
+                    Now</a>
+            </div> <!-- end padding-->
+
+        </div>
+    </div>
+{% endblock %}
