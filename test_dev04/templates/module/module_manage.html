@@ -1,0 +1,112 @@
+{#继承导航html#}
+{% extends "navigation.html" %}
+{# 以下管理项目模块嵌入到navigation.html中 #}
+{% block navigation %}
+
+    <div class="container-fluid">
+
+        <!-- start page title -->
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box">
+                    <h4 class="page-title">模块管理</h4>
+                </div>
+            </div>
+        </div>
+        <!-- end page title -->
+
+
+        <!-- end row -->
+
+
+        <div class="row">
+            <div class="col-xl-6 col-lg-12 order-lg-2 order-xl-1">
+                <div class="card">
+                    <div class="card-body">
+                        <a href="/manage/module_add/" class="btn btn-sm btn-link float-right mb-3">新增
+                            <svg t="1605508568317" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                                 xmlns="http://www.w3.org/2000/svg" p-id="1816" width="16" height="16">
+                                <path d="M512 1023.998933a508.79894 508.79894 0 0 1-199.295585-40.234583 510.19627 510.19627 0 0 1-162.740994-109.727771A510.270937 510.270937 0 0 1 40.224983 711.295585 508.79894 508.79894 0 0 1 0.001067 512a508.79894 508.79894 0 0 1 40.234583-199.295585A510.270937 510.270937 0 0 1 149.974088 149.963421 510.270937 510.270937 0 0 1 312.715082 40.224983 508.79894 508.79894 0 0 1 512 0.001067a508.79894 508.79894 0 0 1 199.295585 40.234583A510.270937 510.270937 0 0 1 874.036579 149.974088a510.19627 510.19627 0 0 1 109.727771 162.740994A508.79894 508.79894 0 0 1 1023.998933 512a508.79894 508.79894 0 0 1-40.234583 199.295585 510.19627 510.19627 0 0 1-109.727771 162.740994 510.19627 510.19627 0 0 1-162.740994 109.727771A508.79894 508.79894 0 0 1 512 1023.998933z m-21.333289-490.665644v191.9996h42.666578V533.333289h191.9996v-42.666578H533.333289V298.667111h-42.666578v191.9996H298.667111v42.666578z"
+                                      fill="#2170D9" p-id="1817"></path>
+                            </svg>
+                        </a>
+
+
+                        <div class="table-responsive">
+                            <table class="table table-centered table-nowrap table-hover mb-0">
+                                <tbody>
+                                <tr>
+                                    <td>
+                                        <h5 class="font-14 my-1 font-weight-normal">模块名称</h5>
+
+                                    </td>
+                                    <td>
+                                        <h5 class="font-14 my-1 font-weight-normal">描述</h5>
+
+                                    </td>
+                                    <td>
+                                        <h5 class="font-14 my-1 font-weight-normal">所属项目</h5>
+
+                                    </td>
+                                    <td>
+                                        <h5 class="font-14 my-1 font-weight-normal">创建时间</h5>
+
+                                    </td>
+                                    <td>
+                                        <h5 class="font-14 my-1 font-weight-normal">操作</h5>
+
+                                    </td>
+                                </tr>
+                                {% for m in modules %}
+                                    <tr>
+                                        <td>
+
+                                            <span class="text-muted font-13">{{ m.name }}</span>
+                                        </td>
+                                        <td>
+
+                                            <span class="text-muted font-13">{{ m.describe }}</span>
+                                        </td>
+                                        <td>
+
+                                            <span class="text-muted font-13">{{ m.project }}</span>
+                                        </td>
+                                        <td>
+
+                                            <span class="text-muted font-13">{{ m.create_time|date:"Y-m-d H:i:s" }}</span>
+                                        </td>
+                                        <td>
+
+                                            <a class="btn btn-sm btn-link float-right mb-3"
+                                               href="/manage/module_edit/{{ m.id }}/">编辑</a>
+                                            <a class="btn btn-sm btn-link float-right mb-3"
+                                               href="/manage/module_delete/{{ m.id }}/">删除</a>
+
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+
+                                </tbody>
+                            </table>
+                        </div> <!-- end table-responsive-->
+                    </div> <!-- end card-body-->
+                </div> <!-- end card-->
+            </div> <!-- end col-->
+
+            <div class="col-xl-3 col-lg-6 order-lg-1">
+
+            </div> <!-- end col-->
+
+            <div class="col-xl-3 col-lg-6 order-lg-1">
+
+            </div>
+            <!-- end col -->
+
+        </div>
+        <!-- end row -->
+
+    </div>
+    <!-- container -->
+
+
+{% endblock %}

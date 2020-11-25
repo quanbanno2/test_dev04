@@ -24,6 +24,8 @@ urlpatterns = [
     path('', login_view.index),
     # path('manage/', login_view.manage),
     path('logout/', login_view.logout),
-    path("manage/", include("project_manage.urls"))
+    path("manage/", include("project_manage.urls")),
+    path("case/", include("case_manage.urls")),
+    path("api/", include("api_manage.urls"))
 
 ]

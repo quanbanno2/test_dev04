@@ -33,7 +33,7 @@ def index(request):
             return render(request, 'login.html', {'msg': '账号或密码不为空'})
         if userauth is not None:
             auth.login(request, userauth)  # 登录成功，db写sessionId
-            response = HttpResponseRedirect('/manage/')
+            response = HttpResponseRedirect('/manage/project/')
             # response.set_cookie("accountName", username, 10)  # 设置cookies
             request.session["accountName"] = username  # 设置session
 

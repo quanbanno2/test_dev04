@@ -1,0 +1,145 @@
+{#继承导航html#}
+{% extends "navigation.html" %}
+{# 以下管理项目模块嵌入到navigation.html中 #}
+{% block navigation %}
+    {% load static %}
+    <div class="container-fluid">
+
+        <div class="row" style="margin-top: 45px">
+            <div class="col-xl-6 col-lg-12 order-lg-2 order-xl-1">
+                <div class="card">
+                    <div class="card-body">
+
+                        <div class="form-group">
+
+                            <label for="req_url">接口URL</label>
+                            <input type="text" class="form-control" id="req_url" placeholder="http://httpbin.org/get">
+
+                        </div>
+
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="requestMethod" id="get"
+                                   value="get" checked>
+                            <label class="form-check-label" for="inlineRadio1">GET</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="requestMethod" id="post"
+                                   value="post">
+                            <label class="form-check-label" for="inlineRadio2">POST</label>
+                        </div>
+
+
+                        <div class="form-group">
+
+
+                            <label>请求参数</label>
+                            <div id="jsoneditor" style="height: 400px;"></div>
+                        </div>
+                        <div class="form-check ">
+                            <input class="form-check-input" type="radio" name="parameterType" id="json"
+                                   value="json" checked>
+                            <label class="form-check-label" for="inlineRadio1">json</label>
+                        </div>
+                        <div class="form-check ">
+                            <input class="form-check-input" type="radio" name="parameterType" id="data"
+                                   value="data">
+                            <label class="form-check-label" for="inlineRadio2">form-data</label>
+                        </div>
+
+
+                        <div class="table-responsive">
+                            <div style="text-align:right">
+                                                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-primary" onclick="Send()">发送请求</button>
+                            </span>
+                            </div>
+
+
+                            <div class="page-header">
+                                <label>返回结果</label>
+                            </div>
+                            <textarea class="form-control" rows="10" id="result"
+                                      style=" height: 400px;"></textarea>
+                        </div> <!-- end table-responsive-->
+                    </div> <!-- end card-body-->
+                </div> <!-- end card-->
+            </div> <!-- end col-->
+
+            <div class="col-xl-3 col-lg-6 order-lg-1">
+
+            </div> <!-- end col-->
+
+            <div class="col-xl-3 col-lg-6 order-lg-1">
+
+            </div>
+            <!-- end col -->
+
+        </div>
+        <!-- end row -->
+
+    </div>
+    <!-- container -->
+
+    <link href="{% static "case/jsoneditor.min.css" %}" rel="stylesheet">
+    <script src="{% static "case/jsoneditor.min.js" %}"></script>
+    <script src="{% static "jquery.js" %}"></script>
+
+    <script type="text/javascript">
+        var parameter = document.getElementById("jsoneditor");
+        var options = {
+            mode: "code",
+        };
+        var requestParam = new JSONEditor(parameter, options);
+
+        function Send() {
+            const url = document.querySelector("#req_url").value;
+            const reqMethod = $('input[name="requestMethod"]:checked').val();
+            let updateJson = requestParam.get();
+            let strParam = JSON.stringify(updateJson, null, 2);
+            const reqType = $('input[name="parameterType"]:checked').val();
+
+            $.post("/api/v1/debug/", {
+                    reqURL: url,
+                    reqMethod: reqMethod,
+                    reqType: reqType,
+                    reqParam: strParam
+                },
+                function (resp) { {#  #}
+                    if (resp.code == 200) {
+                        document.querySelector("#result").value = resp.data;
+                    }
+                }
+            );
+        }
+
+
+    </script>
+
+    <style>
+        div.jsoneditor {
+            border: thin solid #ced4da;
+        }
+
+        div.jsoneditor-menu {
+            display: none;
+        }
+
+        .ace-jsoneditor .ace_gutter {
+            background: white;
+        }
+
+        div.jsoneditor-outer.has-main-menu-bar {
+            margin-top: 0px;
+            padding-top: 0px;
+        }
+
+        .per-label {
+            margin-right: 10px;
+            margin-bottom: 4px;
+            font-size: 1rem;
+
+        }
+
+    </style>
+
+{% endblock %}
