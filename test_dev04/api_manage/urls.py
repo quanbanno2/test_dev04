@@ -3,5 +3,8 @@ from api_manage import views
 
 urlpatterns = [
     path("v1/debug/", views.debug),
+    path("req/", views.req),
+    path("assertResult/", views.assertResult),
+    path("select_data/", views.select_data),
 
 ]

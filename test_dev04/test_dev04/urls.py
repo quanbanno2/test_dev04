@@ -26,6 +26,7 @@ urlpatterns = [
     path('logout/', login_view.logout),
     path("manage/", include("project_manage.urls")),
     path("case/", include("case_manage.urls")),
-    path("api/", include("api_manage.urls"))
+    path("api/", include("api_manage.urls")),
+    path("accounts/login/", login_view.index)
 
 ]

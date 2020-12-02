@@ -10,12 +10,21 @@
                 <div class="card">
                     <div class="card-body">
 
-                        <div class="form-group">
+                        {#                        <div class="form-group">#}
+                        {##}
+                        {#                            <label for="req_url">接口URL</label>#}
+                        {#                            <input type="text" class="form-control" id="req_url">#}
+                        {##}
+                        {#                        </div>#}
 
-                            <label for="req_url">接口URL</label>
-                            <input type="text" class="form-control" id="req_url" placeholder="http://httpbin.org/get">
-
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">请求URL</span>
+                            </div>
+                            <input type="text" class="form-control" aria-label="Username"
+                                   aria-describedby="basic-addon1" id="req_url">
                         </div>
+
 
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="requestMethod" id="get"
@@ -30,8 +39,6 @@
 
 
                         <div class="form-group">
-
-
                             <label>请求参数</label>
                             <div id="jsoneditor" style="height: 400px;"></div>
                         </div>
@@ -53,14 +60,64 @@
                                 <button type="button" class="btn btn-primary" onclick="Send()">发送请求</button>
                             </span>
                             </div>
+                            <br>
 
 
                             <div class="page-header">
                                 <label>返回结果</label>
                             </div>
                             <textarea class="form-control" rows="10" id="result"
-                                      style=" height: 400px;"></textarea>
-                        </div> <!-- end table-responsive-->
+                                      style=" height: 200px;"></textarea>
+                            <br>
+
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">断言内容</span>
+                                </div>
+                                <textarea class="form-control" aria-label="With textarea" id="assertContent"></textarea>
+                            </div>
+
+                            {#                            <div class="page-header">#}
+                            {#                                <label>断言内容</label>#}
+                            {##}
+                            {#                                <br>#}
+                            {##}
+                            {#                                <textarea class="form-control" rows="10" id="assertContent"#}
+                            {#                                          style=" height: 200px;"></textarea>#}
+                            {#                            </div> <!-- end table-responsive-->#}
+                            <br>
+                            <div style="text-align:right">
+
+                                <button type="button" class="btn btn-primary" onclick="Assert()">断言</button>
+
+                            </div>
+                            <br>
+                            <div style="margin-top: 20px;height: 50px;">
+                                <label style="float: left; margin-bottom: 0px;margin-top: 8px;">Project/Module：</label>
+                                <span style="float: left">
+                                <select class="form-control  select2-selection--single" id="projectSelect">
+                                </select></span>
+                                <span style="float: left">
+                                <select class="form-control select2-selection--single" id="moduleSelect">
+                                </select></span>
+                            </div>
+
+
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">用例名称</span>
+                                </div>
+                                <input type="text" class="form-control" aria-label="Username"
+                                       aria-describedby="basic-addon1" id="case_name">
+                            </div>
+                            <div class="form-group" style="text-align: right;">
+                                <button type="button" class="btn btn-primary" onclick="saveCase()">保存</button>
+                            </div>
+
+                        </div>
+                        <br>
+
+
                     </div> <!-- end card-body-->
                 </div> <!-- end card-->
             </div> <!-- end col-->
@@ -81,10 +138,16 @@
     <!-- container -->
 
     <link href="{% static "case/jsoneditor.min.css" %}" rel="stylesheet">
+    <link href="{% static "select/select2.min.css" %}" rel="stylesheet">
     <script src="{% static "case/jsoneditor.min.js" %}"></script>
     <script src="{% static "jquery.js" %}"></script>
+    <script src="{% static "select/select2.min.js" %}"></script>
+    <script src="{% static "case/my_select.js" %}"></script>
+
 
     <script type="text/javascript">
+        SelectInit();
+
         var parameter = document.getElementById("jsoneditor");
         var options = {
             mode: "code",
@@ -95,21 +158,38 @@
             const url = document.querySelector("#req_url").value;
             const reqMethod = $('input[name="requestMethod"]:checked').val();
             let updateJson = requestParam.get();
+            {#console.log(updateJson);#}
             let strParam = JSON.stringify(updateJson, null, 2);
+            {#console.log(strParam);#}
             const reqType = $('input[name="parameterType"]:checked').val();
-
-            $.post("/api/v1/debug/", {
+            // 通过post方法请求
+            $.post("/api/req/", {
                     reqURL: url,
                     reqMethod: reqMethod,
                     reqType: reqType,
                     reqParam: strParam
                 },
-                function (resp) { {#  #}
-                    if (resp.code == 200) {
+                function (resp) {
+                    if (resp.code === 200) {
                         document.querySelector("#result").value = resp.data;
+                    } else {
+                        alert(resp.data);
                     }
                 }
             );
+        }
+
+        function Assert() {
+            const assert_content = document.querySelector("#assertContent").value;
+            const assert_result = document.querySelector("#result").value;
+            $.post("/api/assertResult/", {
+                    assertContent: assert_content,
+                    assertResult: assert_result
+                },
+                function (resp) {
+                    alert(resp.data);
+                })
+
         }
 
 
@@ -137,7 +217,10 @@
             margin-right: 10px;
             margin-bottom: 4px;
             font-size: 1rem;
+        }
 
+        select.form-control {
+            width: 180px;
         }
 
     </style>
