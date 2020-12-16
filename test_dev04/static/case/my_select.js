@@ -12,16 +12,16 @@ var SelectInit = function (defaultProjectId, defaultModuleId) {
 
     }
 
-    // function setDefaultOption(obj, id) {
-    //     // console.log(id);
-    //     for (let i = 0; i < obj.options.length; i++) {
-    //         if (obj.options[i].value == id) {
-    //             console.log(obj.options[i].value);
-    //             obj.selectedIndex = i;
-    //             return;
-    //         }
-    //     }
-    // }
+    function setDefaultOption(obj, id) {
+        // console.log(id);
+        for (let i = 0; i < obj.options.length; i++) {
+            if (obj.options[i].value == id) {
+                console.log(obj.options[i].value);
+                obj.selectedIndex = i;
+                return;
+            }
+        }
+    }
 
     function changeProject() {
         moduleSelect.options.length = 0;
@@ -37,7 +37,7 @@ var SelectInit = function (defaultProjectId, defaultModuleId) {
 
         }
 
-        // setDefaultOption(moduleSelect, defaultModuleId);
+        setDefaultOption(moduleSelect, defaultModuleId);
     }
 
     function getSelectData() {
@@ -48,12 +48,12 @@ var SelectInit = function (defaultProjectId, defaultModuleId) {
                     for (let i = 0; i < dataList.length; i++) {
                         addOption(projectSelect, dataList[i]); //给项目选择框添加选项
                     }
-                    // setDefaultOption(projectSelect, defaultProjectId); //
+                    setDefaultOption(projectSelect, defaultProjectId); //
                     changeProject();
                     projectSelect.onchange = changeProject;
 
                 }
-                // setDefaultOption(projectSelect, defaultProjectId)
+                setDefaultOption(projectSelect, defaultProjectId)
             }
         );
     }

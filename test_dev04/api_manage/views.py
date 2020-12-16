@@ -2,6 +2,8 @@ import json
 import requests
 from django.http import JsonResponse
 from project_manage.models import Project, Module
+from case_manage.models import TestCase
+from django.forms.models import model_to_dict
 
 
 # Create your views here.
@@ -18,14 +20,14 @@ def req(request):
         if req_url == "" or req_method == "" or req_type == "" or req_str == "":
             return JsonResponse({"code": 401, "msg": "False", "data": "请求参数为空"})
         # 判断选择的请求法法
-        if req_method == "post":
+        if req_method == "POST":
             if req_type == "json":
                 r = requests.post(req_url, json=req_str)
             elif req_type == "data":
                 r = requests.post(req_url, data=req_str)
             else:
                 return JsonResponse({"code": 403, "msg": "False", "data": "参数类型不支持"})
-        elif req_method == "get":
+        elif req_method == "GET":
             r = requests.get(req_url, params=req_str)
         else:
             return JsonResponse({"code": 404, "msg": "False", "data": "请求方法不支持"})
@@ -72,6 +74,7 @@ def select_data(request):
     data_list = []
     project = Project.objects.all()
     for p in project:
+        print(project)
         project_dict = {
             "id": p.id,
             "name": p.name,
@@ -88,3 +91,23 @@ def select_data(request):
 
         data_list.append(project_dict)
     return JsonResponse({"code": 200, "msg": "True", "data": data_list})
+
+
+def get_case_info(request, cid):
+    if request.method == "GET":
+        try:
+            case = TestCase.objects.get(id=cid)
+        except TestCase.DoesNotExist:
+            return JsonResponse({"code": 10102, "msg": "True", "data": "用例不存在"})
+        try:
+            module = Module.objects.get(id=case.module_id)
+
+        except Module.DoesNotExist:
+            return JsonResponse({"code": 10103, "msg": "True", "data": "模块不存在"})
+
+        case_dict = model_to_dict(case)
+        case_dict["project"] = module.project_id
+
+        return JsonResponse({"code": 10200, "msg": "True", "data": case_dict})
+    else:
+        return JsonResponse({"code": 10402, "msg": "False", "data": "请求方法错误"})

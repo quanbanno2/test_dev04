@@ -2,21 +2,13 @@
 {% extends "navigation.html" %}
 {# 以下管理项目模块嵌入到navigation.html中 #}
 {% block navigation %}
-    {% load static %}
+
     <div class="container-fluid">
 
         <div class="row" style="margin-top: 45px">
             <div class="col-xl-6 col-lg-12 order-lg-2 order-xl-1">
                 <div class="card">
                     <div class="card-body">
-
-                        {#                        <div class="form-group">#}
-                        {##}
-                        {#                            <label for="req_url">接口URL</label>#}
-                        {#                            <input type="text" class="form-control" id="req_url">#}
-                        {##}
-                        {#                        </div>#}
-
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">请求URL</span>
@@ -25,23 +17,10 @@
                                    aria-describedby="basic-addon1" id="req_url">
                         </div>
 
-{##}
-{#                        <div class="form-check form-check-inline">#}
-{#                            <input class="form-check-input" type="radio" name="requestMethod" id="get"#}
-{#                                   value="get" checked>#}
-{#                            <label class="form-check-label" for="inlineRadio1">GET</label>#}
-{#                        </div>#}
-{#                        <div class="form-check form-check-inline">#}
-{#                            <input class="form-check-input" type="radio" name="requestMethod" id="post"#}
-{#                                   value="post">#}
-{#                            <label class="form-check-label" for="inlineRadio2">POST</label>#}
-{#                        </div>#}
-
                         <select class="form-control select2-single" id="requestMethod" style="width: 120px">
                             <option value="GET">GET</option>
                             <option value="POST">POST</option>
                         </select>
-
 
                         <div class="form-group">
                             <label>请求参数</label>
@@ -82,14 +61,6 @@
                                 <textarea class="form-control" aria-label="With textarea" id="assertContent"></textarea>
                             </div>
 
-                            {#                            <div class="page-header">#}
-                            {#                                <label>断言内容</label>#}
-                            {##}
-                            {#                                <br>#}
-                            {##}
-                            {#                                <textarea class="form-control" rows="10" id="assertContent"#}
-                            {#                                          style=" height: 200px;"></textarea>#}
-                            {#                            </div> <!-- end table-responsive-->#}
                             <br>
                             <div style="text-align:right">
 
@@ -116,7 +87,7 @@
                                        aria-describedby="basic-addon1" id="case_name">
                             </div>
                             <div class="form-group" style="text-align: right;">
-                                <button type="button" class="btn btn-primary" onclick="saveCase()">保存</button>
+                                <button type="button" class="btn btn-primary" onclick="saveEditCase()">保存</button>
                             </div>
 
                         </div>
@@ -141,17 +112,21 @@
 
     </div>
     <!-- container -->
-
+    {% load static %}
     <link href="{% static "case/jsoneditor.min.css" %}" rel="stylesheet">
     <link href="{% static "select/select2.min.css" %}" rel="stylesheet">
     <script src="{% static "case/jsoneditor.min.js" %}"></script>
     <script src="{% static "jquery.js" %}"></script>
     <script src="{% static "select/select2.min.js" %}"></script>
     <script src="{% static "case/my_select.js" %}"></script>
+    <script src="{% static "case/my_case.js" %}"></script>
 
 
     <script type="text/javascript">
-        SelectInit();
+        var url = window.location.href;
+        var caseId = url.split("/")[5];
+
+        getCaseInfo();
 
         var parameter = document.getElementById("jsoneditor");
         var options = {
@@ -197,20 +172,19 @@
 
         }
 
-        function saveCase() {
+        function saveEditCase() {
+            {#var link = window.location.href;#}
+            {#var caseId = link.split("/")[5];#}
             const url = document.querySelector("#req_url").value;
             const reqMethod = $("#requestMethod").val();
             let updateJson = requestParam.get();
-            {#console.log(updateJson);#}
             let strParam = JSON.stringify(updateJson, null, 2);
-            {#console.log(strParam);#}
             const reqType = $('input[name="parameterType"]:checked').val();
-            // 通过post方法请求
             const assert_content = document.querySelector("#assertContent").value;
             const result = document.querySelector("#result").value;
             const ModuleSelect = document.querySelector("#moduleSelect").value;
             const caseName = $("#case_name").val();
-            $.post("/case/case_save/", {
+            $.post("/case/case_edit_save/", {
                     reqURL: url,
                     reqMethod: reqMethod,
                     reqType: reqType,
@@ -219,11 +193,10 @@
                     caseName: caseName,
                     assert_content: assert_content,
                     result: result,
+                    caseId: caseId,
                 },
                 function (resp) {
-
                     alert(resp.data);
-
                 }
             );
 
